@@ -1,0 +1,55 @@
+#Alejandra Aguilar
+#May 2, 2025
+#CIS 129 Module 11 Exercise 9.1
+
+
+### This is code that allows a user to enter grades and save it as a txt file named grades.txt
+
+with open('grades.txt', mode='w') as grades:
+    grade_entry = int(input('Enter grade or enter -1 to end'))
+    while grade_entry != -1:
+        print(grade_entry, file=grades)
+        grade_entry = int(input('Enter grade, -1 to end'))
+
+#Alejandra Aguilar
+#May 2, 2025
+#CIS 129 Module 11 Exercise 9.2
+
+### This is code that allows user to view grades saved in grades.txt. Also shows the count, total and average.
+
+with open('grades.txt', mode='r') as grades: #opens grades.txt
+    total = 0
+    count = 0
+    for grade in grades:
+        grade_number = int(grade)
+        total += grade_number #sums the grades
+        count += 1 #counts number of grades
+        print(grade_number)
+    average = total/count #calculates average
+    print("The sum of all grades is: ", total)
+    print("The number of grades is: ", count)
+    print(f'The average grade is: {average:.2f}')
+
+#Alejandra Aguilar
+#May 2, 2025
+#CIS 129 Module 11 Exercise 9.3
+
+### This is code that allows a user to create a csv file containing student information
+### including first name, last name, and three exam scores
+
+
+import csv
+
+with open('grades.csv', mode='w', newline='') as grades:
+          writer = csv.writer(grades)
+          more_entries = 'y'
+          while more_entries == 'y':
+              first_name = input("Enter the student's first name:")
+              last_name = input("Enter the student's last name:")
+              first_grade = int(input("Enter the student's first exam grade:"))
+              second_grade = int(input("Enter the student's second exam grade:"))
+              third_grade = int(input("Enter the student's third exam grade:"))
+              entry_list = [first_name, last_name, first_grade, second_grade, third_grade]
+              writer.writerow(entry_list)
+              more_entries = input("Would you like to enter another student's information? y/n")
+          
